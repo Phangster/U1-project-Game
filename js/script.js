@@ -108,6 +108,7 @@ function drawEnemies(){
 		document.getElementById("enemies").innerHTML +=`<div class='enemy' style='left:${enemies[i].left}px ; top:${enemies[i].top}px'></div>`
 	}
 }
+var win=null;
 function hitTarget(){
 	drawMissiles();
 	for(var k =0; k<missiles.length; k++){
@@ -125,14 +126,25 @@ function hitTarget(){
 				scoreBoard += 1;
 				summonBoss();
 			}
+			if(missiles[k].left <= boss.left + 200 &&
+			missiles[k].left >= boss.left && 
+			missiles[k].top<= boss.top + 200  &&
+            missiles[k].top >= boss.top
+            ){
+				missiles.splice(k,1);
+				boss.top = 100;
+				win=false;
+				if(win===false){
+					alert('CONGRATULATIONS, YOU HAVE WON THE INVADERS, EARTH THANKS YOU FOR YOUR SERVICE');
+					location.reload();///able to hit boss, how to delay it ?
+				}
+			}
 		}
 	}
 	document.getElementById('newScore').innerHTML= scoreBoard;
 }
 
 //collision of missiles and enemy lose game
-
-var win=null;
 
 function onColision(){
 	for(var i=0; i<enemies.length; i++){
@@ -155,7 +167,7 @@ function onColision(){
 	}
 }
 
-function summonBoss(missile){ //boss will be summon after all enemies are killed
+function summonBoss(){ //boss will be summon after all enemies are killed
 	if(scoreBoard==10){
 		document.getElementById("boss").style.visibility = 'visible';
 		drawBoss();

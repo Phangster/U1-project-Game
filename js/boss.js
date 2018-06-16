@@ -14,28 +14,12 @@ function aiMissile(){
 	drawBoss();
 }
 
-function bossGetsHit(){
-	// var elemBoss = document.getElementById("boss");
-	for(var i = 0 ; i < missiles.length; i++){
-		if(boss.left >= missiles[i].left && boss.left <= missiles[i].left + 200){
-			missiles.splice(i,1);
-			win=false;
-			//hero ship loses
-			if(win===false){
-				alert('GAME OVER');
-				location.reload();
-			}
-		}
-	}	
-}
-
 //boss moving left and right
 function drawBoss(){
 	var elemBoss = document.getElementById("boss");
 	// movement direction when finished moveing down = left
 	var id = setInterval(function(){frame(elemBoss)}, 1);
-	bossGetsHit();
-
+	hitTarget();///////////////
 }
 
 var dir = 'left';
