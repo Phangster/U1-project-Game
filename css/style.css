@@ -1,0 +1,78 @@
+#background{
+	background-image: url("../img/space.jpg");
+	height: 800px;
+	width: 800px;
+	position: relative;
+}
+#Board{
+	background-color: #cafffd;
+	width:120px;
+	height:50px;
+	position: absolute;
+	left: 340px;
+	top: 20px;
+	border-radius: 5px;
+	font-family: 'Space Mono', monospace;
+	text-align: center;
+}
+#newScore{
+	width:120px;
+	height:25px;
+	position: absolute;
+	margin: 0 auto;
+}
+#hero{
+	background-image: url("../img/hero.png");
+	height:50px;
+	width:50px;
+	position:absolute;
+    top: 700px;
+    left: 380px;
+}
+.enemy{
+	background-image: url("../img/enemy.png");
+	height:50px;
+	width:50px;
+	position:absolute;
+}
+/* Missile div block to cover same as back-ground of picture*/
+#missiles{ 
+	height: 800px;
+	width: 800px;
+	position: absolute;
+	overflow-y: hidden;
+}
+/* Missile Image that will be shown on screen*/
+.missile{
+	background-image: url("../img/missile.png");
+	height:16px;
+	width:10px;
+	position: absolute;
+}
+#enemies{
+	height: 800px;
+	width: 800px;
+	position: absolute;
+	overflow-y: hidden;
+}
+#boss{
+	background-image: url("../img/invaders.png");
+	height:200px;
+	width: 200px;
+	background-size: contain; 
+	position: absolute;
+	left: calc(50% - 100px);
+	visibility: hidden;
+}
+#missilesBoss{ 
+	height: 800px;
+	width: 800px;
+	position: absolute;
+	overflow-y: hidden;
+}
+/* Missile Image that will be shown on screen*/
+.missileBoss{
+	background-image: url("../img/missile.png");
+	height:16px;
+	width:10px;
+	position: absolute;
