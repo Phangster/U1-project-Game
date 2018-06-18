@@ -1,5 +1,6 @@
 
 var boss = { left:301, top:0 }
+var health = { left:301 , top:0 }
 
 var missileBoss = [];
 
@@ -17,27 +18,34 @@ function aiMissile(){
 //boss moving left and right
 function drawBoss(){
 	var elemBoss = document.getElementById("boss");
+	var healthBoss = document.getElementById("health");
 	// movement direction when finished moveing down = left
-	var id = setInterval(function(){frame(elemBoss)}, 1);
-	hitTarget();///////////////
+	var id = setInterval(function(){frame(elemBoss,healthBoss)}, 1);
 }
 
 var dir = 'left';
-function frame(elem){
-	if(boss.top<=100){
+function frame(elem,hp){
+	if(boss.top<=100 && health.top<=100){
 		boss.top++;
+		health.top++;
 		elem.style.top = boss.top + "px";
-	}else if(boss.top>100){
+		hp.style.top = health.top + "px";
+
+	}else if(boss.top>100 && health.top>100){
 		if(dir == 'left') {
 			boss.left++;
+			health.left++;
 			elem.style.left = boss.left + "px";
+			hp.style.left = health.left + "px";
 		} else if(dir == 'right'){
 			boss.left--;
+			health.left--;
 			elem.style.left = boss.left + "px";
+			hp.style.left = health.left + "px";
 		}
-		if(boss.left==0){
+		if(boss.left==0 && health.left==0){
 			dir = 'left';
-		} else if (boss.left == 600) {
+		} else if (boss.left == 600 && health.left == 600) {
 			dir = 'right';
 		}
 	}

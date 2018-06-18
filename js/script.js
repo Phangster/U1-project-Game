@@ -108,7 +108,10 @@ function drawEnemies(){
 		document.getElementById("enemies").innerHTML +=`<div class='enemy' style='left:${enemies[i].left}px ; top:${enemies[i].top}px'></div>`
 	}
 }
+
 var win=null;
+var bossUp = false;
+
 function hitTarget(){
 	drawMissiles();
 	for(var k =0; k<missiles.length; k++){
@@ -126,19 +129,9 @@ function hitTarget(){
 				scoreBoard += 1;
 				summonBoss();
 			}
-			if(missiles[k].left <= boss.left + 200 &&
-			missiles[k].left >= boss.left && 
-			missiles[k].top<= boss.top + 200  &&
-            missiles[k].top >= boss.top
-            ){
-				missiles.splice(k,1);
-				boss.top = 100;
-				win=false;
-				if(win===false){
-					alert('CONGRATULATIONS, YOU HAVE WON THE INVADERS, EARTH THANKS YOU FOR YOUR SERVICE');
-					location.reload();///able to hit boss, how to delay it ?
-				}
-			}
+		}
+		if(bossUp){
+			bossCollision(k);
 		}
 	}
 	document.getElementById('newScore').innerHTML= scoreBoard;
@@ -170,8 +163,48 @@ function onColision(){
 function summonBoss(){ //boss will be summon after all enemies are killed
 	if(scoreBoard==10){
 		document.getElementById("boss").style.visibility = 'visible';
+		document.getElementById("health").style.visibility = 'visible';
+		document.getElementById("hp").style.visibility = 'visible';
 		drawBoss();
+		bossUp = true;
 	}	
+}
+
+var enemyHealth = 0;
+var width = 190;
+function bossCollision(k){
+
+	if(missiles[k].left <= boss.left + 200 &&
+	missiles[k].left >= boss.left && 
+	missiles[k].top<= boss.top + 200  &&
+    missiles[k].top >= boss.top
+    ){
+		missiles.splice(k,1);
+		enemyHealth += 1;
+		var foo = document.getElementById("hp");
+		width -= 20;
+		foo.style.width = width + 'px';
+		if(enemyHealth==10){
+			win=false;
+			if(win===false){
+				alert('CONGRATULATIONS, YOU HAVE WON THE INVADERS, EARTH THANKS YOU FOR YOUR SERVICE');
+				location.reload();
+			}
+		}
+	}
+}
+
+var cnt=30;
+
+function timedCount(){
+	setInterval(function () {
+        cnt--;
+        if(cnt == 0){
+        	alert('GAME OVER');
+			location.reload();
+        }
+        document.getElementById("txt").innerHTML = "Time: " + cnt;
+    }, 1000);
 }
 // limit to the screen for both bullets and the ship === use overflow-y: hidden;
 
@@ -189,5 +222,6 @@ function gameLoop(){
 	// moveBossMissile();
 	// bulletBoss();
 }
+timedCount();
 gameLoop()
 }

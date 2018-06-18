@@ -3,6 +3,8 @@
 	height: 800px;
 	width: 800px;
 	position: relative;
+	display: flex;
+	justify-content: center;
 }
 #Board{
 	background-color: #cafffd;
@@ -10,7 +12,7 @@
 	height:50px;
 	position: absolute;
 	left: 340px;
-	top: 20px;
+	top: 50px;
 	border-radius: 5px;
 	font-family: 'Space Mono', monospace;
 	text-align: center;
@@ -76,3 +78,41 @@
 	height:16px;
 	width:10px;
 	position: absolute;
+}
+#health{
+	width: 200px;
+	height: 12px;
+	background-color: white;
+	border: 3px solid black
+	background-size: contain; 
+	position: absolute;
+	left: 301px;
+	border-radius: 7px;
+	visibility: hidden;
+
+}
+#hp{
+	width: 190px;
+	height: 10px;
+	background-color: red;
+	background-size: contain; 
+	position: absolute;
+	left: calc(50% - 100px);
+	border-radius: 7px;
+	visibility: hidden;
+	margin-top: 1px;
+	margin-left: 4px;
+}
+#txt{
+	width: 100px;
+	height: 30px;
+	margin-right: 5px;
+	background-color: white;
+	border: 2px solid black;
+	padding-left: 10px;
+	font-family: 'Space Mono', monospace;
+	font-size: 20px;
+	display: block;
+	position: absolute;
+	margin-top:10px;
+}
