@@ -25,7 +25,7 @@ function drawBoss(){
 
 var dir = 'left';
 function frame(elem,hp){
-	if(boss.top<=100 && health.top<=100){
+	if(boss.top<=110 && health.top<=110){
 		boss.top++;
 		health.top++;
 		elem.style.top = boss.top + "px";

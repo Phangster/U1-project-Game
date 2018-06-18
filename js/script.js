@@ -7,8 +7,6 @@ var hero = {
 
 var missiles = [];
 
-
-// var enemies = [{left:null, top:null}];
 var enemies =
 [{left:180, top:100},
 {left:280, top:100},
@@ -24,34 +22,19 @@ var enemies =
 var scoreBoard = 0;
 
 document.onkeydown = function(e){
-	// console.log(e.keyCode);
 
 /* ###FOR LEFT AND RIGHT### */
 
 	if(e.keyCode===37){
-		// console.log('LEFT');
 		hero.left = hero.left - 10;
 		drawHero();
 	}else if(e.keyCode===39){
-		// console.log('RIGHT');
 		hero.left = hero.left + 10;
 		drawHero();
-
-/* ###FOR UP AND DOWN### */	
-
-	// }else if(e.keyCode===40){
-	// 	console.log('TOP');
-	// 	hero.top = hero.top + 10;
-	// 	moveHeroUD();
-	// }else if(e.keyCode===38){
-	// 	console.log('BOTTOM');
-	// 	hero.top = hero.top + 10;
-	// 	moveHeroUD();
 
 /* ###SPACE BAR### */	
 
 	}else if(e.keyCode===32){
-		// console.log('FIRE');
 		missiles.push({
 			left: hero.left + 20,
 			top: hero.top - 15
@@ -66,10 +49,6 @@ function drawHero(){
 	idHero.style.left = hero.left + "px";
 	idHero.style.top = hero.top + "px";
 }
-// function moveHeroUD(){
-// 	var getHero = document.getElementById("hero");
-// 	getHero.style.top = hero.top + "px";
-// }
 
 function moveMissile(){
 	for(var i =0; i<missiles.length; i++){
@@ -83,19 +62,6 @@ function drawMissiles() {
         document.getElementById('missiles').innerHTML += `<div class='missile' style='left:${missiles[i].left}px; top:${missiles[i].top}px'></div>`;
     }
 }
-//creating random bots
-// function randomEnemies(){
-// 	for(var z = 0; z < 15; i++){
-// 		//create a random number
-// 		var randLeft = Math.floor(Math.random()*800)+1;
-// 		var randTop = Math.floor(Math.random()*800)+1;
-// 		//tag it to the left and top
-// 		enemies[z].left = randLeft;
-// 		enemies[z].top = randTop;
-// 		//append to the array
-// 		z++;
-// 	}
-// }
 
 function moveEnemies(){
 	for(var i =0; i<enemies.length; i++){
@@ -116,8 +82,6 @@ function hitTarget(){
 	drawMissiles();
 	for(var k =0; k<missiles.length; k++){
 		for(var x =0; x<enemies.length; x++){
-			// console.log(missiles);
-			// console.log(enemies);
 			if(
 			missiles[k].left <= enemies[x].left + 50 &&
 			missiles[k].left >= enemies[x].left && 
@@ -141,9 +105,6 @@ function hitTarget(){
 
 function onColision(){
 	for(var i=0; i<enemies.length; i++){
-	//get the current loctation of the enemy ship
-	// clearAll();		//unable to clear the game
-	//if it === to the hero ship
 		if(
 		(enemies[i].top >= hero.top &&
 		enemies[i].left <= hero.left + 50 &&
@@ -214,13 +175,7 @@ function gameLoop(){
 	drawEnemies();
 	moveEnemies();
 	onColision();
-	// gameWin();
 	hitTarget();
-	// randomEnemies();
-	// aiMissile();
-	// drawBossMissile();
-	// moveBossMissile();
-	// bulletBoss();
 }
 timedCount();
 gameLoop()
